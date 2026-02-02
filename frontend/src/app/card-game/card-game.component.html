@@ -1,0 +1,46 @@
+<section class="card-game">
+  <header>
+    <h1>Duelo de Cartas</h1>
+    <p>Escolha um atributo para comparar Força, Destreza ou Magia.</p>
+  </header>
+
+  <div class="cards">
+    <article class="card">
+      <h2>{{ playerCard.name }}</h2>
+      <ul>
+        <li>Força: {{ playerCard.forca }}</li>
+        <li>Destreza: {{ playerCard.destreza }}</li>
+        <li>Magia: {{ playerCard.magia }}</li>
+      </ul>
+    </article>
+
+    <article class="card opponent">
+      <h2>{{ opponentCard.name }}</h2>
+      <ul>
+        <li>Força: {{ opponentCard.forca }}</li>
+        <li>Destreza: {{ opponentCard.destreza }}</li>
+        <li>Magia: {{ opponentCard.magia }}</li>
+      </ul>
+    </article>
+  </div>
+
+  <div class="actions">
+    <button
+      type="button"
+      *ngFor="let stat of stats"
+      (click)="compare(stat)"
+      [class.active]="selectedStat === stat"
+    >
+      Comparar {{ statLabels[stat] }}
+    </button>
+    <button type="button" class="reset" (click)="reset()">Limpar</button>
+  </div>
+
+  <div class="result" *ngIf="result">
+    <h3>Resultado</h3>
+    <p>
+      {{ statLabels[selectedStat] }}: {{ result.playerScore }} x {{ result.opponentScore }}
+    </p>
+    <strong>{{ result.description }}</strong>
+  </div>
+</section>
